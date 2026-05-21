@@ -45,7 +45,7 @@ Haptic_HeartSim/
 │
 ├── hardware/
 │   ├── README.md                   Hardware overview
-│   ├── bom/                        Bill of Materials (.xlsx + README)
+│   ├── Bill Of Materials/           Bill of Materials (.xlsx + README)
 │   ├── cad/                        3D-printable parts (STL/STEP)
 │   └── images/                     Hardware photographs
 │
@@ -74,7 +74,7 @@ This table describes what each documentation file is expected to contain.
 | `HeartSim-Report/04_future_work/README.md`       | Conclusions and proposed extensions for future iterations                                      |
 | `HeartSim-Report/05_references/README.md`        | Full IEEE-style reference list, used consistently across all other documents                   |
 | `hardware/README.md`                  | System overview: modules, central control unit, electrical architecture                        |
-| `hardware/bom/README.md`              | Bill of Materials notes — purchase sources, quantities, costs                                  |
+| `hardware/Bill Of Materials/README.md` | Bill of Materials notes — purchase sources, quantities, costs                                  |
 | `software/README.md`                  | Software architecture, repository layout, build and run instructions                           |
 | `CONTEXT.md`                          | Repository entry point: project summary, structure, conventions                                 |
 
@@ -161,7 +161,7 @@ To keep writing consistent across documents, the terms in the left column are th
 ### 6.6 Code and File References
 
 - Code blocks tagged with language identifier: ` ```cpp `, ` ```python `, ` ```bash `.
-- File paths in inline code: `hardware/bom/bill_of_materials.xlsx`.
+- File paths in inline code: `hardware/Bill Of Materials/bill_of_materials.xlsx`.
 - Variable names in code style: `i_module`, `u_speaker`.
 
 ### 6.7 Cross-references
