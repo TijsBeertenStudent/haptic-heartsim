@@ -1,0 +1,1 @@
+This repository documents the Haptic HeartSim project for KU Leuven’s Haptic Interfaces Experience (B-KUL-T4lMD2) in the MSc Industrial Engineering (Electromechanics, Clinical Engineering). Developed by Joppe Baert under Prof. Carlos Rodriguez-Guerrero and TAs Marlon Rodriguez and Ewald Ury.
