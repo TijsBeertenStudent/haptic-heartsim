@@ -130,58 +130,13 @@ To keep writing consistent across documents, the terms in the left column are th
 
 ---
 
-## 5. Editorial Conventions
 
-### 5.1 Language
-
-- All repository content is written in **British English** (en-GB).
-- Decimal separator: **point** (e.g. `3.7 V`), not comma.
-- Use the Oxford comma in lists of three or more items.
-
-### 5.2 Numbering and Headings
-
-- Use hierarchical numbering: `1`, `1.1`, `1.1.1`. Do not exceed four levels.
-- Markdown headings: `#` for the title, `##` for major sections (numbered), `###` for subsections.
-- Every README opens with an H1 title that matches the directory it lives in.
-
-### 5.3 Figures and Tables
-
-- Numbered sequentially within each document: `Figure 1`, `Figure 2`, `Table 1`.
-- Caption format: `*Figure 1 — Short description of what is shown.*`
-- Figures stored in the `images/` folder adjacent to the README.
-- Reference figures in prose as "see Figure 1" (not "fig. 1" or "below").
-
-### 5.4 Citations
-
-- IEEE numeric style: `[1]`, `[2]`, multiple `[1], [3], [5]`, or ranges `[1]–[4]`.
-- The full reference list lives in `HeartSim-Report/05_references/README.md`.
-- Every other README that cites a source uses the same numbering as that master list.
-- When adding a new reference, append it to the master list and use the next available number — never renumber existing entries.
-
-### 5.5 Units
-
-- SI units throughout, with a thin space between value and unit (`3.0 V`, `70 mA`, `200 Hz`, `10 mm`).
-- Exception: percentages — no space (`50%`).
-- Frequencies in Hz / kHz; currents in mA / A; voltages in V; power in mW / W.
-
-### 5.6 Code and File References
-
-- Code blocks tagged with language identifier: ` ```cpp `, ` ```python `, ` ```bash `.
-- File paths in inline code: `hardware/Bill Of Materials/bill_of_materials.xlsx`.
-- Variable names in code style: `i_module`, `u_speaker`.
-
-### 5.7 Cross-references
-
-- Between README files, use relative Markdown links:
-  `[see Methodology](../02_methodology/README.md)`.
-- Within a single document, link to a heading anchor:
-  `[see §2.3](#23-control-of-the-motors)`.
 
 ---
 
-## 6. Working Conventions
+## 5. Working Conventions
 
-### 6.1 Section Tone
+### 5.1 Section Tone
 
 | Folder                | Tone and content                                                                |
 | --------------------- | ------------------------------------------------------------------------------- |
@@ -189,7 +144,7 @@ To keep writing consistent across documents, the terms in the left column are th
 | `hardware/`           | Practical build documentation — tables, diagrams, pin lists, BOM.               |
 | `software/`           | Code-focused — block diagrams, function references, build and run instructions. |
 
-### 6.2 Scope Statement
+### 5.2 Scope Statement
 
 - This is an educational prototype, not a medically certified device.
 - It is intended for use in supervised training scenarios only.
