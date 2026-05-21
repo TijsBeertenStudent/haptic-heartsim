@@ -32,9 +32,7 @@ HeartSim is a wearable haptic device that simulates the physical vibrations and 
 
 ```
 Haptic_HeartSim/
-├── README.md                       Main project entry point
-├── CONTEXT.md                      This file
-├── LICENSE                         Project license
+├── CONTEXT.md                      This file (project entry point)
 ├── .gitignore                      Git exclusions
 │
 ├── docs/
@@ -49,16 +47,14 @@ Haptic_HeartSim/
 │   ├── README.md                   Hardware overview
 │   ├── bom/                        Bill of Materials (.xlsx + README)
 │   ├── cad/                        3D-printable parts (STL/STEP)
-│   ├── schematics/                 Circuit diagrams
-│   ├── wiring/                     Wiring diagrams
 │   └── images/                     Hardware photographs
 │
 ├── software/
-│   ├── README.md                   Software overview
-│   ├── arduino/                    Firmware (Arduino Nano ESP32)
-│   ├── python/                     Signal preprocessing utilities
-│   ├── unity/                      Interface application
-│   └── images/                     Architecture diagrams, screenshots
+│   ├── README.md                   Software overview and architecture
+│   ├── platformio.ini              PlatformIO build configuration
+│   ├── src/                        C++ firmware (Arduino Nano ESP32)
+│   ├── data/                       Web interface (HTML/CSS/JS, LittleFS)
+│   └── docs/                       PCG model, wiring, BOM, setup guide
 │
 └── videos/                         Demonstration recordings
 ```
@@ -80,7 +76,7 @@ This table describes what each documentation file is expected to contain.
 | `hardware/README.md`                  | System overview: modules, central control unit, electrical architecture                        |
 | `hardware/bom/README.md`              | Bill of Materials notes — purchase sources, quantities, costs                                  |
 | `software/README.md`                  | Software architecture, repository layout, build and run instructions                           |
-| Top-level `README.md`                 | Repository entry point: short summary, navigation links, headline figure                       |
+| `CONTEXT.md`                          | Repository entry point: project summary, structure, conventions                                 |
 
 ---
 

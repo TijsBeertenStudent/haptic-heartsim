@@ -35,12 +35,6 @@ The project pursues the following goals:
 - Erb's point as a separate sixth simulation channel; aortic regurgitation signals are routed primarily through the aortic and mitral modules.
 - Multi-patient anatomical diversity; the prototype is sized for a single volunteer and does not account for variations in body habitus.
 
-Figure 1 illustrates the physical layout of the four haptic modules relative to the classical auscultation points on the precordium.
-
-![Figure 1 — Schematic overview of the four auscultation points and the lateral offset of each haptic module to avoid mechanical interference between the speaker membrane and the stethoscope diaphragm.](images/module_placement_diagram.png)
-
-*Figure 1 — Schematic layout of the four haptic modules relative to the classical auscultation points. Each module is placed a few centimetres lateral to the measurement point so that the student can position a stethoscope directly over the anatomical area without resting it on the speaker cone.*
-
 ## 5. Document Overview
 
 The repository is organised as follows:
@@ -50,4 +44,4 @@ The repository is organised as follows:
 - **[`docs/03_discussion/`](../03_discussion/README.md)** — results and limitations: observations from prototype testing, known hardware and software deficiencies, and a critical evaluation of the simulation quality.
 - **[`docs/04_future_work/`](../04_future_work/README.md)** — conclusions and proposed next iterations: dynamic manoeuvres, improved actuators, clinical evaluation, and extended pathology coverage.
 - **[`hardware/`](../../hardware/README.md)** — bill of materials, wiring diagrams, schematics, and 3D-printable mechanical parts.
-- **[`software/`](../../software/README.md)** — Arduino firmware, Python preprocessing utilities, and the Unity-based trainer interface, with build and run instructions.
+- **[`software/`](../../software/README.md)** — Arduino Nano ESP32 firmware (PlatformIO), procedural heart sound synthesis, and the web-based trainer interface, with build and run instructions.

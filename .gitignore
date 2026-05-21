@@ -2,8 +2,8 @@
 _sources/
 
 # ── PlatformIO build output ──
-software/heartsim_ok/.pio/
-software/heartsim_ok/.vscode/
+software/.pio/
+software/.vscode/
 
 # ── OS / editor junk ──
 .DS_Store
@@ -12,4 +12,4 @@ Thumbs.db
 *~
 
 # ── Chart.js (downloaded at build time, see software README) ──
-software/heartsim_ok/data/chart.min.js
+software/data/chart.min.js

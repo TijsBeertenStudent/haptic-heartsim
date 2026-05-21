@@ -146,7 +146,7 @@ upload_flags    = --auth=heartsim2026
 ## Files
 
 ```
-heartsim_ok/
+software/
 ├── platformio.ini              ← Build config, libraries, partitions
 ├── src/
 │   ├── main.cpp                ← Top-level setup/loop
