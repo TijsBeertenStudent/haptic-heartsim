@@ -128,7 +128,7 @@ To keep writing consistent across documents, the terms in the left column are th
 | signal processing      | sound processing               |
 | segmentation           | splitting (in headings)        |
 
----
+
 
 
 
