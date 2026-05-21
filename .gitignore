@@ -1,0 +1,15 @@
+# ── Source extraction intermediates (not part of the deliverable) ──
+_sources/
+
+# ── PlatformIO build output ──
+software/heartsim_ok/.pio/
+software/heartsim_ok/.vscode/
+
+# ── OS / editor junk ──
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# ── Chart.js (downloaded at build time, see software README) ──
+software/heartsim_ok/data/chart.min.js

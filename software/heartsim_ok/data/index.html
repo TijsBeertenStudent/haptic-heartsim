@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0e14">
+    <title>HeartSim — Auscultation Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Reconnect banner — verborgen tot WS connection verbroken raakt -->
+<div id="reconnect-banner" class="hidden">Verbinding verbroken — opnieuw proberen…</div>
+
+<header>
+    <div class="header-left">
+        <span id="live-dot" class="dot"></span>
+        <h1 data-i18n="h1-title">Heart Auscultation Simulator</h1>
+    </div>
+    <div class="header-right">
+        <span id="operator-badge" class="op-badge">…</span>
+        <button id="release-btn" class="outline-btn" style="display:none;padding:6px 10px;font-size:12px">Release</button>
+        <span id="client-count">0 clients</span>
+        <button id="settings-btn" aria-label="Settings">⚙</button>
+    </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- MODE TABS: Live (gemeten PPG) vs Demo (instelbare BPM)         -->
+<!-- ============================================================ -->
+<div class="mode-tabs">
+    <button class="mode-tab active" data-mode="live">
+        <span class="mode-icon">●</span>
+        <span class="mode-label">Live — gemeten</span>
+        <small>via PPG sensor</small>
+    </button>
+    <button class="mode-tab" data-mode="demo">
+        <span class="mode-icon">▶</span>
+        <span class="mode-label">Demo</span>
+        <small>handmatig BPM</small>
+    </button>
+</div>
+
+<!-- Settings panel — verborgen tenzij ⚙ aangeklikt -->
+<div id="settings-panel" class="hidden">
+    <h3>Settings</h3>
+    <div class="setting-row" style="padding-top:0;border-top:none;margin-bottom:10px">
+        <div class="lang-bar">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn"        data-lang="nl">NL</button>
+            <button class="lang-btn"        data-lang="fr">FR</button>
+        </div>
+    </div>
+    <div class="setting-row">
+        <div class="slider-header">
+            <span>PTT offset <small>(PPG fingertip lag vs cardiac S1)</small></span>
+            <span class="value-display"><span id="ptt-value">200</span> ms</span>
+        </div>
+        <input type="range" min="0" max="400" value="200" step="10"
+               id="ptt-slider" class="slider-input">
+        <div class="slider-labels">
+            <small>0 ms (geen correctie)</small>
+            <small>400 ms</small>
+        </div>
+    </div>
+    <div class="setting-row">
+        <label class="check-row">
+            <input type="checkbox" id="markers-toggle" checked>
+            <span>Toon S1/S2 markers op grafiek</span>
+        </label>
+        <label class="check-row">
+            <input type="checkbox" id="pathology-overlay-toggle">
+            <span>Toon pathologie-events op grafiek</span>
+        </label>
+    </div>
+</div>
+
+<main>
+
+    <!-- ============================================================ -->
+    <!-- Live metrics: BPM + grote waveform-grafiek                    -->
+    <!-- ============================================================ -->
+    <section class="metrics-row">
+        <div class="card bpm-card">
+            <div class="bpm-label">BPM</div>
+            <div class="bpm-value" id="bpm-value">--</div>
+            <div class="bpm-sub">IBI <span id="ibi-value">---</span> ms</div>
+            <div class="bpm-mode-tag" id="bpm-mode-tag">Live</div>
+        </div>
+        <div class="card chart-card chart-card-big">
+            <div class="chart-header">
+                <span class="chart-title">PPG signaal</span>
+                <span class="chart-legend">
+                    <span class="legend-item"><span class="legend-marker s1"></span>S1</span>
+                    <span class="legend-item"><span class="legend-marker s2"></span>S2</span>
+                    <span class="legend-item" id="legend-event" style="display:none">
+                        <span class="legend-marker event"></span>
+                        <span id="legend-event-label">Event</span>
+                    </span>
+                </span>
+            </div>
+            <canvas id="ppg-chart"></canvas>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- DEMO PANEL — alleen zichtbaar in Demo-mode                    -->
+    <!-- ============================================================ -->
+    <section class="section demo-panel hidden" id="demo-panel">
+        <h2>Demo controls</h2>
+        <div class="slider-header">
+            <span>Hartslag (demo BPM)</span>
+            <span class="value-display"><span id="playback-bpm-value">70</span> BPM</span>
+        </div>
+        <input type="range" min="30" max="200" value="70" step="1"
+               id="playback-bpm-slider" class="slider-input">
+        <div class="slider-labels">
+            <small>30 (bradycardie)</small>
+            <small>200 (tachycardie)</small>
+        </div>
+        <small class="demo-hint">In demo-mode wordt de meting van de PPG genegeerd. Pas hier de hartslag aan om de tactiele simulatie te demonstreren.</small>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Baseline hartslag — gewone S1/S2 door motoren                 -->
+    <!-- ============================================================ -->
+    <section class="section baseline-card">
+        <div class="baseline-header">
+            <h2>Baseline hartslag (S1 + S2)</h2>
+            <label class="toggle-row inline">
+                <input type="checkbox" id="baseline-toggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="slider-header">
+            <span>Intensiteit</span>
+            <span class="value-display"><span id="baseline-intensity-value">8</span> / 10</span>
+        </div>
+        <input type="range" min="0" max="10" value="8" step="1"
+               id="baseline-intensity-slider" class="slider-input">
+        <div class="slider-labels">
+            <small>0 (uit)</small>
+            <small>10 (max)</small>
+        </div>
+        <small class="hint">UIT als je de hartslag puur via de stethoscoop wil laten horen.
+            AAN met intensiteit 1-10 om de "lub-dub" ook tactiel te voelen.</small>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Pathology selector — verbeterde grid met categorieën          -->
+    <!-- ============================================================ -->
+    <section class="section">
+        <h2 data-i18n="h2-pathology">Pathologie</h2>
+
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="cardiac"   data-i18n="tab-cardiac">Cardiaal</button>
+            <button class="tab-btn"        data-tab="pulmonary" data-i18n="tab-pulmonary">Pulmonair</button>
+        </div>
+
+        <!-- Cardiac tab -->
+        <div id="tab-cardiac" class="tab-pane">
+            <div class="pathology-section-title">Normaal</div>
+            <div class="pathology-grid">
+                <button class="path-btn path-btn-large active" data-id="NORMAL">
+                    <span class="path-icon">♥</span>
+                    <span class="path-name">Normal</span>
+                    <span class="path-desc">Gezond ritme</span>
+                </button>
+            </div>
+            <div class="pathology-section-title">Klepafwijkingen</div>
+            <div class="pathology-grid">
+                <button class="path-btn" data-id="AORTIC_STENOSIS">
+                    <span class="path-name">Aortic Stenosis</span>
+                    <span class="path-desc">Systolic crescendo-decrescendo</span>
+                </button>
+                <button class="path-btn" data-id="MITRAL_REGURGITATION">
+                    <span class="path-name">Mitral Regurg.</span>
+                    <span class="path-desc">Holosystolisch</span>
+                </button>
+                <button class="path-btn" data-id="MITRAL_STENOSIS">
+                    <span class="path-name">Mitral Stenosis</span>
+                    <span class="path-desc">Diastolic rumble + snap</span>
+                </button>
+                <button class="path-btn" data-id="AORTIC_REGURGITATION">
+                    <span class="path-name">Aortic Regurg.</span>
+                    <span class="path-desc">Diastolic decrescendo</span>
+                </button>
+            </div>
+            <div class="pathology-section-title">Gallop (extra hartgeluiden)</div>
+            <div class="pathology-grid">
+                <button class="path-btn" data-id="S3_GALLOP">
+                    <span class="path-name">S3 Gallop</span>
+                    <span class="path-desc">Vroege diastolic</span>
+                </button>
+                <button class="path-btn" data-id="S4_GALLOP">
+                    <span class="path-name">S4 Gallop</span>
+                    <span class="path-desc">Presystolic</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Pulmonary tab -->
+        <div id="tab-pulmonary" class="tab-pane hidden">
+            <div class="pathology-section-title">Crackles (knetters)</div>
+            <div class="pathology-grid">
+                <button class="path-btn" data-id="CRACKLES_FINE">
+                    <span class="path-name">Fine Crackles</span>
+                    <span class="path-desc">Hoog, fijn</span>
+                </button>
+                <button class="path-btn" data-id="CRACKLES_COARSE">
+                    <span class="path-name">Coarse Crackles</span>
+                    <span class="path-desc">Laag, borrelend</span>
+                </button>
+            </div>
+            <div class="pathology-section-title">Wheezes (piepen)</div>
+            <div class="pathology-grid">
+                <button class="path-btn" data-id="WHEEZE_INSPIRATORY">
+                    <span class="path-name">Insp. Wheeze</span>
+                    <span class="path-desc">Bij inademen</span>
+                </button>
+                <button class="path-btn" data-id="WHEEZE_EXPIRATORY">
+                    <span class="path-name">Exp. Wheeze</span>
+                    <span class="path-desc">Bij uitademen</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Severity slider                                               -->
+    <!-- ============================================================ -->
+    <section class="section">
+        <div class="slider-header">
+            <span data-i18n="h2-severity">Ernst</span>
+            <span class="value-display"><span id="severity-value">3</span> / 5</span>
+        </div>
+        <input type="range" min="1" max="5" value="3" step="1" id="severity-slider" class="slider-input">
+        <div class="slider-labels">
+            <small data-i18n="lbl-severity-lo">mild</small>
+            <small data-i18n="lbl-severity-hi">ernstig</small>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Auscultation modules                                          -->
+    <!-- ============================================================ -->
+    <section class="section">
+        <h2 data-i18n="h2-modules">Auscultatiepunten</h2>
+        <div class="module-grid">
+            <button class="module-card active" data-module="0">
+                <span class="module-label">Aortic</span>
+                <span class="module-state">ON</span>
+            </button>
+            <button class="module-card active" data-module="1">
+                <span class="module-label">Pulmonic</span>
+                <span class="module-state">ON</span>
+            </button>
+            <button class="module-card active" data-module="2">
+                <span class="module-label">Tricuspid</span>
+                <span class="module-state">ON</span>
+            </button>
+            <button class="module-card active" data-module="3">
+                <span class="module-label">Mitral</span>
+                <span class="module-state">ON</span>
+            </button>
+            <div class="speaker-group-label">▲ Speaker 0 (upper)</div>
+            <div class="speaker-group-label">▼ Speaker 1 (lower)</div>
+        </div>
+        <small style="display:block;margin-top:6px;color:var(--text-mute);font-size:11px;text-align:center">
+            Haptische motoren onafhankelijk per punt — audio gedeeld per speaker-paar
+        </small>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Master sliders                                                -->
+    <!-- ============================================================ -->
+    <section class="section master-sliders">
+        <div>
+            <div class="slider-header">
+                <span data-i18n="lbl-audio">Audio</span>
+                <span class="value-display"><span id="audio-pct">71</span>%</span>
+            </div>
+            <input type="range" min="0" max="255" value="180" id="audio-slider" class="slider-input">
+        </div>
+        <div>
+            <div class="slider-header">
+                <span data-i18n="lbl-haptic">Haptic</span>
+                <span class="value-display"><span id="haptic-pct">78</span>%</span>
+            </div>
+            <input type="range" min="0" max="255" value="200" id="haptic-slider" class="slider-input">
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Recording                                                     -->
+    <!-- ============================================================ -->
+    <section class="section">
+        <h2 data-i18n="h2-recording">Recording</h2>
+        <div class="rec-controls">
+            <button id="rec-start-btn" class="outline-btn" data-i18n="btn-rec-start">⏺ Record</button>
+            <button id="rec-stop-btn"  class="outline-btn" data-i18n="btn-rec-stop" disabled>⏹ Stop</button>
+            <span id="rec-status" class="rec-status"></span>
+        </div>
+        <ul id="rec-list" class="rec-list"></ul>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Action buttons                                                -->
+    <!-- ============================================================ -->
+    <section class="section actions">
+        <button id="start-btn" class="primary-btn" data-i18n="btn-start">▶ Start simulatie</button>
+        <button id="stop-btn"  class="outline-btn" data-i18n="btn-stop">Stop</button>
+    </section>
+
+    <!-- Debug overlay — revealed by triple-tapping the BPM display -->
+    <div id="diag-overlay" class="hidden">
+        <div class="diag-panel">
+            <div class="diag-header">
+                <span>Diagnostics</span>
+                <button id="diag-close">✕</button>
+            </div>
+            <pre id="diag-pre" class="diag-pre"></pre>
+        </div>
+    </div>
+
+</main>
+
+<!-- Chart.js eerst, dan app.js -->
+<script src="chart.min.js"></script>
+<script src="app.js"></script>
+<script>
+// Slider fill gradient
+document.querySelectorAll('.slider-input').forEach(function(s) {
+    function update() {
+        var min = +s.min || 0, max = +s.max || 100;
+        var pct = ((+s.value - min) / (max - min)) * 100;
+        s.style.setProperty('--val', pct + '%');
+    }
+    s.addEventListener('input', update);
+    update();
+});
+</script>
+</body>
+</html>
