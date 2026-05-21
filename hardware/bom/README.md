@@ -30,4 +30,4 @@ The spreadsheet uses a KU Leuven–themed layout and covers 27 line items across
 
 - Prices marked "price indicative" (DRV2605L driver ICs, TCA9548A multiplexer, breadboard, jumper cables) were sourced from the KU Leuven workshop stock; exact retail prices may differ.
 - The four 3D-printed parts (items 10–12) were produced at FabLab Leuven on a Prusa MK4 printer. The combined FabLab charge of €14.00 has been allocated proportionally across the three print jobs based on estimated filament use.
-- For component selection rationale and electrical specifications, see [docs/02_methodology/README.md](../../docs/02_methodology/README.md).
+- For component selection rationale and electrical specifications, see [HeartSim-Report/02_methodology/README.md](../../HeartSim-Report/02_methodology/README.md).

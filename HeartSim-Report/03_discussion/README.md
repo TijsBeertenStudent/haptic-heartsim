@@ -12,7 +12,7 @@ The aim of this project was to develop a wearable system that allows medical stu
 
 <!-- src:DA-P2.1 -->
 
-The original medical challenge — providing repeatable exposure to pathological heart sounds without depending on expensive mannequins or incidental patient contacts — is addressed by our prototype on most fronts. The haptic harness with four modules at the classical auscultation points (aortic, pulmonary, tricuspid, mitral), combined with real-time PPG heart-rate measurement and a web interface that lets the instructor choose pathology type and severity level live, delivers a functional and interactive training platform for under 200 euro per set-up. The synchronisation between the measured heart rate of the healthy volunteer and the simulated pathology runs stably, and the severity slider (level 1–5) enables a progression from obvious to subtle — precisely the gradation that we identified as didactically valuable from the literature review [2], [9] (see [docs/01_medical_problem](../01_medical_problem/README.md)).
+The original medical challenge — providing repeatable exposure to pathological heart sounds without depending on expensive mannequins or incidental patient contacts — is addressed by our prototype on most fronts. The haptic harness with four modules at the classical auscultation points (aortic, pulmonary, tricuspid, mitral), combined with real-time PPG heart-rate measurement and a web interface that lets the instructor choose pathology type and severity level live, delivers a functional and interactive training platform for under 200 euro per set-up. The synchronisation between the measured heart rate of the healthy volunteer and the simulated pathology runs stably, and the severity slider (level 1–5) enables a progression from obvious to subtle — precisely the gradation that we identified as didactically valuable from the literature review [2], [9] (see [HeartSim-Report/01_medical_problem](../01_medical_problem/README.md)).
 
 <!-- src:DA-P2.2 -->
 
@@ -26,7 +26,7 @@ The most significant unexpected limitation during the test phase was the failure
 
 <!-- src:DA-P3.2 -->
 
-On the basis of the electrical characteristics described in the methodology (see [docs/02_methodology §4.2](../02_methodology/README.md)), we can technically substantiate the most likely cause of failure. The MAX98357A specifies a peak output current of 1.4 A at full power and was set to its maximum gain (15 dB) via the SD/GAIN pin during various tests. Our 8 ohm speakers have a nominal power rating of 2 W, corresponding to an RMS current of approximately 0.5 A and peak currents up to roughly 300 mA at transients such as an S1 beat. When high-amplitude signals were repeatedly sent — especially when two speakers were connected in parallel or in stereo mode to a single amplifier, as in our set-up — the combined load may have intermittently crept closer to that 1.4 A limit than budgeted. We suspect that a combination of prolonged operation at high gain, the absence of external current limiting, and possibly a transient on the 5 V rail of the MB102 power supply irreversibly damaged the internal output stage of the class-D amplifier.
+On the basis of the electrical characteristics described in the methodology (see [HeartSim-Report/02_methodology §4.2](../02_methodology/README.md)), we can technically substantiate the most likely cause of failure. The MAX98357A specifies a peak output current of 1.4 A at full power and was set to its maximum gain (15 dB) via the SD/GAIN pin during various tests. Our 8 ohm speakers have a nominal power rating of 2 W, corresponding to an RMS current of approximately 0.5 A and peak currents up to roughly 300 mA at transients such as an S1 beat. When high-amplitude signals were repeatedly sent — especially when two speakers were connected in parallel or in stereo mode to a single amplifier, as in our set-up — the combined load may have intermittently crept closer to that 1.4 A limit than budgeted. We suspect that a combination of prolonged operation at high gain, the absence of external current limiting, and possibly a transient on the 5 V rail of the MB102 power supply irreversibly damaged the internal output stage of the class-D amplifier.
 
 <!-- src:DA-P3.3, DA-P3.4, DA-P3.5, DA-P3.6 -->
 
@@ -46,13 +46,13 @@ The practical consequence for the tests is that we had to carry out the final va
 
 <!-- src:DA-P4.0 -->
 
-Since we as designers do not have a clinically trained ear for cardiac pathologies — our reference is based on the literature review (see [docs/01_medical_problem](../01_medical_problem/README.md)) and on recordings from PhysioNet [6], Thinklabs [13], and the Littmann CORE library [10] — we relied on three test subjects with clinical experience for the user validation: two medical students and one retired general practitioner. They tested the prototype independently and without prior knowledge of the chosen pathology.
+Since we as designers do not have a clinically trained ear for cardiac pathologies — our reference is based on the literature review (see [HeartSim-Report/01_medical_problem](../01_medical_problem/README.md)) and on recordings from PhysioNet [6], Thinklabs [13], and the Littmann CORE library [10] — we relied on three test subjects with clinical experience for the user validation: two medical students and one retired general practitioner. They tested the prototype independently and without prior knowledge of the chosen pathology.
 
 ### 4.1 Positive Findings
 
 <!-- src:DA-P4.1.1 -->
 
-**Realism of the concept.** All three test subjects were pleasantly surprised by the overall result and clearly saw clinical potential in the concept. They confirmed that the idea of using a living chest — with natural breathing movements, body warmth, and skin compliance — provides a more realistic experience than the static mannequins they had been accustomed to (see also the comparison with existing training solutions in [docs/01_medical_problem §5](../01_medical_problem/README.md)).
+**Realism of the concept.** All three test subjects were pleasantly surprised by the overall result and clearly saw clinical potential in the concept. They confirmed that the idea of using a living chest — with natural breathing movements, body warmth, and skin compliance — provides a more realistic experience than the static mannequins they had been accustomed to (see also the comparison with existing training solutions in [HeartSim-Report/01_medical_problem §5](../01_medical_problem/README.md)).
 
 <!-- src:DA-P4.1.2 -->
 
@@ -74,7 +74,7 @@ Since we as designers do not have a clinically trained ear for cardiac pathologi
 
 <!-- src:DA-P4.2.2 -->
 
-**Dimensions of the central control module.** The module containing the Arduino Nano ESP32, the breadboard, the MB102 power supply, and the jumper-wire cabling is in its current form too large and too unwieldy to be worn comfortably on a person. We were aware of this beforehand — a prototype phase is by definition not optimised for form factor — but it remains a clear improvement point for a next iteration (see [docs/02_methodology §3](../02_methodology/README.md) for the current mechanical integration).
+**Dimensions of the central control module.** The module containing the Arduino Nano ESP32, the breadboard, the MB102 power supply, and the jumper-wire cabling is in its current form too large and too unwieldy to be worn comfortably on a person. We were aware of this beforehand — a prototype phase is by definition not optimised for form factor — but it remains a clear improvement point for a next iteration (see [HeartSim-Report/02_methodology §3](../02_methodology/README.md) for the current mechanical integration).
 
 <!-- src:DA-P4.2.3 -->
 
@@ -90,4 +90,4 @@ We are aware of two fundamental limitations of our user validation. First, the s
 
 <!-- src:DA-P5.1 -->
 
-In summary, our prototype addresses the original challenge successfully at the conceptual level: an affordable, interactive, and person-worn alternative to mannequin-based and audio-only training. The core functionality — synchronous control of four modules, configurable pathology via a web interface, gradable severity — works and is perceived as valuable by medically trained test subjects. The realisation remains, however, a prototype: the hardware fault in the amplifiers [25] removed the auditory component from the final tests, the mechanical noise of the motors limits the haptic dynamic range, and the form factor of both the central module and the haptic modules requires further miniaturisation. These observations form the basis for the recommendations in the next chapter (see [docs/04_future_work](../04_future_work/README.md)).
+In summary, our prototype addresses the original challenge successfully at the conceptual level: an affordable, interactive, and person-worn alternative to mannequin-based and audio-only training. The core functionality — synchronous control of four modules, configurable pathology via a web interface, gradable severity — works and is perceived as valuable by medically trained test subjects. The realisation remains, however, a prototype: the hardware fault in the amplifiers [25] removed the auditory component from the final tests, the mechanical noise of the motors limits the haptic dynamic range, and the form factor of both the central module and the haptic modules requires further miniaturisation. These observations form the basis for the recommendations in the next chapter (see [HeartSim-Report/04_future_work](../04_future_work/README.md)).

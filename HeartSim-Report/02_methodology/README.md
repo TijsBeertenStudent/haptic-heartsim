@@ -1593,4 +1593,4 @@ For this assignment, AI was used for several purposes:
 
 ---
 
-*References cited in this document refer to the master list in [`docs/05_references/README.md`](../05_references/README.md).*
+*References cited in this document refer to the master list in [`HeartSim-Report/05_references/README.md`](../05_references/README.md).*

@@ -31,7 +31,7 @@ The project pursues the following goals:
 **Out of scope:**
 - Clinical validation or regulatory certification of the device as a medical training tool.
 - Simulation of rare or exotic pathological sounds beyond the five conditions listed above.
-- Dynamic auscultation manoeuvres (Valsalva, handgrip, positional changes) — these are identified as a priority for future iterations (see [docs/04_future_work/README.md](../04_future_work/README.md)).
+- Dynamic auscultation manoeuvres (Valsalva, handgrip, positional changes) — these are identified as a priority for future iterations (see [HeartSim-Report/04_future_work/README.md](../04_future_work/README.md)).
 - Erb's point as a separate sixth simulation channel; aortic regurgitation signals are routed primarily through the aortic and mitral modules.
 - Multi-patient anatomical diversity; the prototype is sized for a single volunteer and does not account for variations in body habitus.
 
@@ -39,9 +39,9 @@ The project pursues the following goals:
 
 The repository is organised as follows:
 
-- **[`docs/01_medical_problem/`](../01_medical_problem/README.md)** — clinical background: cardiac anatomy, the heart cycle, heart sounds, auscultation practice, existing training solutions, and the state of the art in cardiac simulation.
-- **[`docs/02_methodology/`](../02_methodology/README.md)** — design and implementation: component selection, mechanical and electrical architecture, firmware design, and the audio-to-haptic mapping strategy.
-- **[`docs/03_discussion/`](../03_discussion/README.md)** — results and limitations: observations from prototype testing, known hardware and software deficiencies, and a critical evaluation of the simulation quality.
-- **[`docs/04_future_work/`](../04_future_work/README.md)** — conclusions and proposed next iterations: dynamic manoeuvres, improved actuators, clinical evaluation, and extended pathology coverage.
+- **[`HeartSim-Report/01_medical_problem/`](../01_medical_problem/README.md)** — clinical background: cardiac anatomy, the heart cycle, heart sounds, auscultation practice, existing training solutions, and the state of the art in cardiac simulation.
+- **[`HeartSim-Report/02_methodology/`](../02_methodology/README.md)** — design and implementation: component selection, mechanical and electrical architecture, firmware design, and the audio-to-haptic mapping strategy.
+- **[`HeartSim-Report/03_discussion/`](../03_discussion/README.md)** — results and limitations: observations from prototype testing, known hardware and software deficiencies, and a critical evaluation of the simulation quality.
+- **[`HeartSim-Report/04_future_work/`](../04_future_work/README.md)** — conclusions and proposed next iterations: dynamic manoeuvres, improved actuators, clinical evaluation, and extended pathology coverage.
 - **[`hardware/`](../../hardware/README.md)** — bill of materials, wiring diagrams, schematics, and 3D-printable mechanical parts.
 - **[`software/`](../../software/README.md)** — Arduino Nano ESP32 firmware (PlatformIO), procedural heart sound synthesis, and the web-based trainer interface, with build and run instructions.

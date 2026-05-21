@@ -1,6 +1,6 @@
 # Medical Background and State of the Art
 
-This document provides the clinical and scientific foundation for the HeartSim project. It reviews cardiac anatomy, the physiology of normal and abnormal heart sounds, the practice of cardiac auscultation, existing training solutions, and the relevant signal-processing literature. Together, these sections establish the gap that HeartSim aims to fill and justify the key technical decisions documented in [`docs/02_methodology/README.md`](../02_methodology/README.md).
+This document provides the clinical and scientific foundation for the HeartSim project. It reviews cardiac anatomy, the physiology of normal and abnormal heart sounds, the practice of cardiac auscultation, existing training solutions, and the relevant signal-processing literature. Together, these sections establish the gap that HeartSim aims to fill and justify the key technical decisions documented in [`HeartSim-Report/02_methodology/README.md`](../02_methodology/README.md).
 
 ---
 
@@ -113,7 +113,7 @@ The Levine grading scale [2], [9], presented in Figure 4, is a widely used frame
 
 *Figure 4 — The Levine grading scale (grades I–VI) defining murmur loudness. HeartSim implements grades I–V; grade VI is excluded as acoustically unrealistic for a concealed module. Source: Oxford Handbook of Clinical Examination and Practical Skills, Box 5.6 [9].*
 
-HeartSim occupies the intermediate space between audio libraries and high-fidelity mannequins. By mounting four haptic-and-audio modules on a commercial chest harness worn by a healthy volunteer, the system provides: live heart-rate synchronisation through a PPG sensor; point-specific sound intensities at the four standard auscultation areas; low-frequency vibrotactile output for gallops and low-pitched murmurs; and real-time trainer control of pathology type and severity — all for a total hardware cost below €250 per set-up. This combination is the design target described in [`docs/02_methodology/README.md`](../02_methodology/README.md), and the degree to which it is achieved — together with the limitations encountered — is evaluated in [`docs/03_discussion/README.md`](../03_discussion/README.md).
+HeartSim occupies the intermediate space between audio libraries and high-fidelity mannequins. By mounting four haptic-and-audio modules on a commercial chest harness worn by a healthy volunteer, the system provides: live heart-rate synchronisation through a PPG sensor; point-specific sound intensities at the four standard auscultation areas; low-frequency vibrotactile output for gallops and low-pitched murmurs; and real-time trainer control of pathology type and severity — all for a total hardware cost below €250 per set-up. This combination is the design target described in [`HeartSim-Report/02_methodology/README.md`](../02_methodology/README.md), and the degree to which it is achieved — together with the limitations encountered — is evaluated in [`HeartSim-Report/03_discussion/README.md`](../03_discussion/README.md).
 
 ---
 

@@ -35,7 +35,7 @@ Haptic_HeartSim/
 ├── CONTEXT.md                      This file (project entry point)
 ├── .gitignore                      Git exclusions
 │
-├── docs/
+├── HeartSim-Report/
 │   ├── 00_introduction/            General project introduction
 │   ├── 01_medical_problem/         Clinical background and literature review
 │   ├── 02_methodology/             Design methodology and system architecture
@@ -67,12 +67,12 @@ This table describes what each documentation file is expected to contain.
 
 | File                                  | Contents                                                                                       |
 | ------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `docs/00_introduction/README.md`      | Project motivation, problem statement, objectives, scope                                       |
-| `docs/01_medical_problem/README.md`   | Cardiac anatomy, heart cycle, heart sounds, auscultation practice, existing training methods   |
-| `docs/02_methodology/README.md`       | Conceptual framework, component selection, mechanical and electrical design, software design   |
-| `docs/03_discussion/README.md`        | Test results, performance observations, limitations of the prototype                           |
-| `docs/04_future_work/README.md`       | Conclusions and proposed extensions for future iterations                                      |
-| `docs/05_references/README.md`        | Full IEEE-style reference list, used consistently across all other documents                   |
+| `HeartSim-Report/00_introduction/README.md`      | Project motivation, problem statement, objectives, scope                                       |
+| `HeartSim-Report/01_medical_problem/README.md`   | Cardiac anatomy, heart cycle, heart sounds, auscultation practice, existing training methods   |
+| `HeartSim-Report/02_methodology/README.md`       | Conceptual framework, component selection, mechanical and electrical design, software design   |
+| `HeartSim-Report/03_discussion/README.md`        | Test results, performance observations, limitations of the prototype                           |
+| `HeartSim-Report/04_future_work/README.md`       | Conclusions and proposed extensions for future iterations                                      |
+| `HeartSim-Report/05_references/README.md`        | Full IEEE-style reference list, used consistently across all other documents                   |
 | `hardware/README.md`                  | System overview: modules, central control unit, electrical architecture                        |
 | `hardware/bom/README.md`              | Bill of Materials notes — purchase sources, quantities, costs                                  |
 | `software/README.md`                  | Software architecture, repository layout, build and run instructions                           |
@@ -148,7 +148,7 @@ To keep writing consistent across documents, the terms in the left column are th
 ### 6.4 Citations
 
 - IEEE numeric style: `[1]`, `[2]`, multiple `[1], [3], [5]`, or ranges `[1]–[4]`.
-- The full reference list lives in `docs/05_references/README.md`.
+- The full reference list lives in `HeartSim-Report/05_references/README.md`.
 - Every other README that cites a source uses the same numbering as that master list.
 - When adding a new reference, append it to the master list and use the next available number — never renumber existing entries.
 
@@ -179,7 +179,7 @@ To keep writing consistent across documents, the terms in the left column are th
 
 | Folder                | Tone and content                                                                |
 | --------------------- | ------------------------------------------------------------------------------- |
-| `docs/`               | Academic writing — literature, methodology, discussion. Prose-heavy.            |
+| `HeartSim-Report/`    | Academic writing — literature, methodology, discussion. Prose-heavy.            |
 | `hardware/`           | Practical build documentation — tables, diagrams, pin lists, BOM.               |
 | `software/`           | Code-focused — block diagrams, function references, build and run instructions. |
 | Top-level `README.md` | Repository entry point — concise overview, navigation, headline figure.         |
@@ -188,7 +188,7 @@ To keep writing consistent across documents, the terms in the left column are th
 
 - This is an educational prototype, not a medically certified device.
 - It is intended for use in supervised training scenarios only.
-- Limitations and known issues are discussed in `docs/03_discussion/README.md`.
+- Limitations and known issues are discussed in `HeartSim-Report/03_discussion/README.md`.
 
 ---
 
