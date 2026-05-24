@@ -589,6 +589,18 @@ Both rails (3.3 V and 5 V) are distributed from the MB102; the Arduino also gets
 
 *Figure 10 — Joy-it MB102 breadboard power supply module. The module clicks directly into the supply rails of a breadboard and supplies 3.3 V and 5 V simultaneously via jumper-selectable rails. External supply via DC jack or USB-A.* <!-- src:F2.7 -->
 
+### 2.8 Complete Integrated Circuit Schematic
+
+Now that all individual components, their control strategies, and the power supply requirements have been defined, they are integrated into one complete, working system circuit. Figure 11 shows the fully aggregated schematic of the HeartSim prototype, combining the microcontroller, power distribution rails, I²C multiplexing, haptic drivers, audio amplification, and the PPG sensor into a single interconnected blueprint.
+
+The system relies on a strict separation between the 5 V power rail (feeding the heavy current consumers like the audio amplifiers and the Arduino VIN) and the 3.3 V power rail (feeding the signal logic and the haptic drivers). To ensure signal integrity and prevent noise coupling, all ground (GND) lines are tied together into a single, low-impedance common ground plane.
+
+![Figure 11 — Complete integrated circuit schematic of the HeartSim prototype: combining the Arduino Nano ESP32, TCA9548A multiplexer, four DRV2605L haptic drivers, two MAX98357 class-D amplifiers, and the SEN0203 PPG sensor into one synchronized architecture.](images/Heart_Ascultation.png)
+
+*Figure 11 — Complete integrated circuit schematic of the HeartSim prototype.*
+
+> **Critical Assembly Note:** Before powering on the system, verify that the jumpers on the MB102 module are explicitly set to 5 V on one side and 3.3 V on the other. Reversing these rails will deliver 5 V to the ESP32 logic pins and the DRV2605L drivers, which will cause immediate hardware failure.
+
 ---
 
 ## 3. Mechanical integration and assembly
