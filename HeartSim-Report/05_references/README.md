@@ -14,7 +14,7 @@ The four document sections referenced in the table are:
 | `03_discussion` | Test results, observed limitations, and user feedback |
 | `04_future_work` | Conclusions and proposed next iterations |
 
-References whose URL or citation details could not be independently confirmed are marked with ⚠ in the table and with `[URL not verified]` or `[citation details unverified]` in the reference list below.
+
 
 ---
 
