@@ -4,7 +4,7 @@ This repository documents the Haptic HeartSim project for KU Leuven's Haptic Int
 
 **Project:** HeartSim — Haptic Simulation of Heart Sounds for Cardiac Auscultation Training
 **Authors:** Joppe Baert, Tijs Beerten
-**Institution:** KU Leuven — Faculty of Engineering Technology — Group T
+**Institution:** KU Leuven Faculty of Engineering Technology — Group T
 **Course:** B-KUL-T4lMD2 — Haptic Interfaces Experience
 **Supervisor:** Prof. dr. ir. Carlos Rodriguez-Guerrero
 **Teaching Assistants:** Marlon Rodriguez, Ewald Ury
